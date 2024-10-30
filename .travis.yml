@@ -14,4 +14,8 @@ after_success:
   - docker build -t gaddiego/multi-nginx ./nginx
   - docker build -t gaddiego/multi-server ./server
   - docker build -t gaddiego/multi-worker ./worker
-
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password_stdin
+  - docker push gaddiego/multi-client
+  - docker push gaddiego/multi-nginx
+  - docker push gaddiego/multi-server
+  - docker push gaddiego/multi-worker
