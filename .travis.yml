@@ -19,3 +19,16 @@ after_success:
   - docker push gaddiego/multi-nginx
   - docker push gaddiego/multi-server
   - docker push gaddiego/multi-worker
+  
+deploy:
+    provider: elasticbeanstalk
+    region: eu-north-1
+    app: multi-docker-2
+    env: Multi-docker-2-env
+    bucket_name: elasticbeanstalk-us-east-1-108782091232
+    bucket_path: multi_docker
+    ok:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: 
+        secure: $AWS_SECRET_KEY
